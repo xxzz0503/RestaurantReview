@@ -1,8 +1,8 @@
 import React from "react";
 import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
-import { FontAwesome, Entypo, Feather } from "@expo/vector-icons";
+import { FontAwesome, Feather, FontAwesome5 } from "@expo/vector-icons";
 import yelp from "../api/yelp";
-import { SliderBox } from "react-native-image-slider-box";
+import ImageSlider from "./ImageSlider";
 
 const RestaurantDetail = ({ navigation }) => {
   const itemId = navigation.getParam("itemId");
@@ -22,25 +22,24 @@ const RestaurantDetail = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.res_detail_box}>
         <View style={styles.res_img_box}>
-          <Image style={styles.res_img} source={{ uri: result.image_url }} />
+          <ImageSlider style={styles.res_img} photos={result.photos} />
           <View style={styles.res_tag_box}>
             <View style={styles.res_rating_box}>
               <Text style={styles.res_rating_content}>
                 {result.rating}
+                {"  "}
                 <FontAwesome
                   style={styles.res_rating_content_icon}
                   name="star"
                 />
               </Text>
             </View>
-            <View style={styles.res_distance_box}>
-              <Text style={styles.res_distance_content}>
-                {result.hours[0].is_open_now ? (
-                  <Text>OPEN NOW</Text>
+            <View style={styles.res_open_closed_box}>
+                {result.hours[0].is_open_now === true ? (
+                  <FontAwesome5 style={styles.res_open_closed_icon} name="door-open" color="green"/>
                 ) : (
-                  <Text>CLOSED</Text>
+                  <FontAwesome5 style={styles.res_open_closed_icon} name="door-closed" color="red"/>
                 )}
-              </Text>
             </View>
           </View>
           <View style={styles.res_information_box}>
@@ -50,6 +49,7 @@ const RestaurantDetail = ({ navigation }) => {
             <View style={styles.res_info_phone_box}>
               <Text style={styles.res_info_phone_content}>
                 <Feather name="phone-call" size={20} color="red" />
+                {"  "}
                 {result.phone}
               </Text>
             </View>
@@ -113,14 +113,11 @@ const styles = StyleSheet.create({
     height: "40%",
   },
   res_img: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "center",
     borderRadius: 10,
   },
   res_tag_box: {
     position: "absolute",
-    bottom: -20,
+    bottom: 5,
     width: "100%",
     paddingHorizontal: 20,
   },
@@ -138,7 +135,7 @@ const styles = StyleSheet.create({
     color: "#ffc529",
     fontSize: 20,
   },
-  res_distance_box: {
+  res_open_closed_box: {
     position: "absolute",
     backgroundColor: "#ffffff",
     alignSelf: "flex-end",
@@ -146,10 +143,8 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
   },
-  res_distance_content: {
+  res_open_closed_icon: {
     fontSize: 20,
-    fontWeight: "700",
-    color: "red"
   },
 
   // design restaurant info section
