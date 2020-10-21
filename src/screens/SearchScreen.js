@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar";
 import ListRestaurant from "../components/ListRestaurant";
 import useYelpApi from "../hooks/useYelpApi";
 
-const SearchScreen = ({navigation}) => {
+const SearchScreen = ({ navigation }) => {
   const [term, setTerm] = React.useState("");
   const [makeYelpRequest, searchResults, errorMsg] = useYelpApi();
 
@@ -15,49 +15,41 @@ const SearchScreen = ({navigation}) => {
     });
   };
 
-  return (
+  return errorMsg !== null ? (
     <View style={styles.container}>
       <SearchBar
         term={term}
         onTermChange={(newTerm) => setTerm(newTerm)}
         onTermSubmit={() => makeYelpRequest(term)}
       />
-      {errorMsg ? (
-        <Text>{errorMsg}</Text>
-      ) : (
-        <Text>We have found: {searchResults.length} results</Text>
-      )}
       <ScrollView showsVerticalScrollIndicator={false}>
-        {filterResultsByPrice("$").length === 0 ? null : (
-          <ListRestaurant
-            results={filterResultsByPrice("$")}
-            title="Cost Effective"
-          />
-        )}
+        <ListRestaurant
+          results={filterResultsByPrice("$")}
+          title="Cost Effective"
+        />
 
-        {filterResultsByPrice("$$").length === 0 ? null : (
-          <ListRestaurant
-            results={filterResultsByPrice("$$")}
-            title="Bit Pricer"
-          />
-        )}
+        <ListRestaurant
+          results={filterResultsByPrice("$$")}
+          title="Bit Pricer"
+        />
 
-        {filterResultsByPrice("$$$").length === 0 ? null : (
-          <ListRestaurant
-            results={filterResultsByPrice("$$$")}
-            title="Big Spender"
-          />
-        )}
+        <ListRestaurant
+          results={filterResultsByPrice("$$$")}
+          title="Big Spender"
+        />
       </ScrollView>
     </View>
+  ) : (
+    <Text></Text>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#999999",
+    backgroundColor: "#ffffff",
     height: "100%",
     paddingLeft: 30,
+    paddingTop: 20,
   },
   list: {
     marginTop: 10,

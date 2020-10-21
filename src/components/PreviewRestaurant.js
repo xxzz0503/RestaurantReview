@@ -37,7 +37,7 @@ const PreviewRestaurant = ({
             </Text>
           </View>
           <View style={styles.res_review_box}>
-            <Text style={styles.rex_review_content}>{res_review} Reviews</Text>
+            <Text style={styles.rex_review_content}><FontAwesome name="pencil-square-o" size="16"/> {`  ${res_review}`}</Text>
           </View>
         </View>
       </View>
@@ -48,19 +48,17 @@ const PreviewRestaurant = ({
 const styles = StyleSheet.create({
   // main container
   container: {
-    width: 200,
-    height: 190,
-    padding: 5,
     marginRight: 30,
+    backgroundColor: "#F4F4F4",
+    borderRadius: 10,
     shadowColor: "#111111",
     shadowOffset: {
       width: 10,
-      height: 40,
+      height: 10,
     },
-    shadowOpacity: 0.8,
+    shadowOpacity: 0.4,
     shadowRadius: 10,
-    backgroundColor: "#999999",
-    borderRadius: 10,
+    marginBottom: 30,
   },
   res_price_box: {
     position: "absolute",
@@ -81,43 +79,35 @@ const styles = StyleSheet.create({
   },
   // show image
   image_box: {
-    width: "100%",
-    height: 130,
-    zIndex: 1,
-    shadowColor: "#111111",
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.4,
-    shadowRadius: 10,
+    height: 150,
+    width: 200
   },
   res_img: {
-    resizeMode: "center",
-    width: "100%",
+    resizeMode: "cover",
     height: "100%",
+    width: "100%",
     borderRadius: 10,
   },
   // show description
   res_description: {
-    backgroundColor: "#ffffff",
-    position: "absolute",
-    width: 200,
-    bottom: -35,
-    top: 70,
+    backgroundColor: "#F4F4F4",
     borderRadius: 10,
-    justifyContent: "flex-end",
     paddingLeft: 10,
     paddingBottom: 5,
+    paddingTop: 5,
+    width:200,
+    flex: 1,
   },
   res_title: {
+    flex: 4,
     fontSize: 16,
     fontWeight: "700",
     marginBottom: 10,
   },
   res_tag_box: {
-    height: 30,
+    flex: 1,
     flexDirection: "row",
+    alignContent: "flex-end",
   },
   res_rating_box: {
     backgroundColor: "#EBECF1",

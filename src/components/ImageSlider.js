@@ -33,13 +33,12 @@ const styles = StyleSheet.create({
   container: {
   },
   res_image: {
-    borderRadius: 10,
-    width: "89%",
-    alignSelf: "flex-start",
+    height: 350,
+    resizeMode: "center"
   },
   res_image_pagination:{
     position: "absolute",
-    bottom: 0,
+    bottom: 60,
     padding: 0,
     alignItems: "center",
     alignSelf: "center",

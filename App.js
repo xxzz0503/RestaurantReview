@@ -14,16 +14,16 @@ const navigator = createStackNavigator(
   {
     initialRouteName: "Search",
     defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: "#999999",
-        borderBottomWidth: "none",
-        shadowColor: 'transparent',
-      },
-      headerTintColor: "#ffffff",
-      headerTitleStyle: {
-        fontSize: 25,
-        fontWeight: "bold"
-      },
+      header: null,
+      // headerStyle: {
+      //   borderBottomWidth: "none",
+      //   shadowColor: 'transparent',
+      // },
+      // headerTintColor: "#111111",
+      // headerTitleStyle: {
+      //   fontSize: 25,
+      //   fontWeight: "bold"
+      // },
     },
     options: ({ route }) => ({
       title: route.param.title,

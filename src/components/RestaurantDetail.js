@@ -21,6 +21,7 @@ const RestaurantDetail = ({ navigation }) => {
   return result !== null ? (
     <View style={styles.container}>
       <View style={styles.res_detail_box}>
+        {/* image flow */}
         <View style={styles.res_img_box}>
           <ImageSlider style={styles.res_img} photos={result.photos} />
           <View style={styles.res_tag_box}>
@@ -35,61 +36,76 @@ const RestaurantDetail = ({ navigation }) => {
               </Text>
             </View>
             <View style={styles.res_open_closed_box}>
-                {result.hours[0].is_open_now === true ? (
-                  <FontAwesome5 style={styles.res_open_closed_icon} name="door-open" color="green"/>
-                ) : (
-                  <FontAwesome5 style={styles.res_open_closed_icon} name="door-closed" color="red"/>
-                )}
+              {result.hours[0].is_open_now ? (
+                <FontAwesome5
+                  style={styles.res_open_closed_icon}
+                  name="door-open"
+                  color="green"
+                />
+              ) : (
+                <FontAwesome5
+                  style={styles.res_open_closed_icon}
+                  name="door-closed"
+                  color="red"
+                />
+              )}
             </View>
-          </View>
-          <View style={styles.res_information_box}>
-            <View style={styles.res_info_name_box}>
-              <Text style={styles.res_info_name_content}>{result.name}</Text>
-            </View>
-            <View style={styles.res_info_phone_box}>
-              <Text style={styles.res_info_phone_content}>
-                <Feather name="phone-call" size={20} color="red" />
-                {"  "}
-                {result.phone}
-              </Text>
-            </View>
-            <View style={styles.res_info_price_quantity_box}>
-              <View style={styles.res_info_price_box}>
-                <Text style={styles.res_info_price_title}>Price</Text>
-                <Text style={styles.res_info_price_content}>
-                  {result.price}
-                </Text>
-              </View>
-              <View style={styles.res_info_quantity_box}>
-                <Text style={styles.res_info_quantity_title}>Quantity</Text>
-                <View style={styles.res_info_quantity_counter}>
-                  <TouchableOpacity onPress={() => setCounter(counter - 1)}>
-                    <FontAwesome
-                      style={styles.res_info_quantity_counter_minus_btn}
-                      name="minus-circle"
-                    />
-                  </TouchableOpacity>
-                  <Text style={styles.res_info_quantity_counter_content}>
-                    {counter}
-                  </Text>
-                  <TouchableOpacity onPress={() => setCounter(counter + 1)}>
-                    <FontAwesome
-                      style={styles.res_info_quantity_counter_plus_btn}
-                      name="plus-circle"
-                    />
-                  </TouchableOpacity>
-                </View>
-              </View>
-              <View></View>
-            </View>
-          </View>
-          <View style={styles.res_cta}>
-            <Text style={styles.res_cta_content}>
-              <FontAwesome style={styles.res_cta_icon} name="cart-plus" />
-              Add to cart
-            </Text>
           </View>
         </View>
+        {/* information flow */}
+        <View style={styles.res_information_box}>
+          <View style={styles.res_info_name_box}>
+            <Text style={styles.res_info_name_content}>{result.name}</Text>
+          </View>
+          <View
+            style={{
+              borderBottomColor: "#111111",
+              borderBottomWidth: 1,
+              opacity: 0.2,
+              marginVertical: 10,
+            }}
+          />
+          <View style={styles.res_info_phone_box}>
+            <Text style={styles.res_info_phone_content}>
+              <Feather name="phone-call" size={20} color="red" />
+              {"  "}
+              {result.phone}
+            </Text>
+          </View>
+          <View style={styles.res_info_price_quantity_box}>
+            <View style={styles.res_info_price_box}>
+              <Text style={styles.res_info_price_title}>Price</Text>
+              <Text style={styles.res_info_price_content}>{result.price}</Text>
+            </View>
+            <View style={styles.res_info_quantity_box}>
+              <Text style={styles.res_info_quantity_title}>Quantity</Text>
+              <View style={styles.res_info_quantity_counter}>
+                <TouchableOpacity onPress={() => setCounter(counter - 1)}>
+                  <FontAwesome
+                    style={styles.res_info_quantity_counter_minus_btn}
+                    name="minus-circle"
+                  />
+                </TouchableOpacity>
+                <Text style={styles.res_info_quantity_counter_content}>
+                  {counter}
+                </Text>
+                <TouchableOpacity onPress={() => setCounter(counter + 1)}>
+                  <FontAwesome
+                    style={styles.res_info_quantity_counter_plus_btn}
+                    name="plus-circle"
+                  />
+                </TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+
+      <View style={styles.res_cta}>
+        <Text style={styles.res_cta_content}>
+          <FontAwesome style={styles.res_cta_icon} name="cart-plus" />
+          {`   Add to cart`}
+        </Text>
       </View>
     </View>
   ) : (
@@ -104,21 +120,16 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   res_detail_box: {
-    marginHorizontal: 20,
-    height: "95%",
+    height: "100%",
     backgroundColor: "#f7f7f7",
-    borderRadius: 10,
-  },
-  res_img_box: {
-    height: "40%",
   },
   res_img: {
     borderRadius: 10,
   },
   res_tag_box: {
     position: "absolute",
-    bottom: 5,
     width: "100%",
+    top: 30,
     paddingHorizontal: 20,
   },
   res_rating_box: {
@@ -149,7 +160,15 @@ const styles = StyleSheet.create({
 
   // design restaurant info section
   res_information_box: {
-    margin: 20,
+    padding: 10,
+    paddingHorizontal: 30,
+    zIndex: 1,
+    position: "absolute",
+    backgroundColor: "#ffffff",
+    borderRadius: 30,
+    width: "100%",
+    bottom: 0,
+    top: 290,
   },
 
   // design restaurant name section
@@ -231,9 +250,12 @@ const styles = StyleSheet.create({
     width: "40%",
     padding: 10,
     borderRadius: 10,
+    position: "absolute",
+    bottom: 20,
+    textAlign: "center",
     alignSelf: "center",
     alignContent: "center",
-    justifyContent: "center",
+    justifyContent: "center"
   },
   res_cta_icon: {
     color: "#FFC529",

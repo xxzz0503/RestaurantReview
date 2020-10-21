@@ -3,10 +3,10 @@ import { Text, View, StyleSheet, FlatList } from "react-native";
 import PreviewRestaurant from "./PreviewRestaurant";
 
 const ListRestaurant = ({ title, results }) => {
-  return (
+  return !results.length ? null : (
     <View style={styles.container}>
       <View style={styles.lst_title_box}>
-        <Text style={styles.lst_title_content}>{title}</Text>
+        <Text style={styles.lst_title_content}>{title}{"  "}<Text style={styles.lst_title_amount}>{results.length}</Text></Text>
       </View>
       <FlatList
         horizontal
@@ -32,17 +32,24 @@ const ListRestaurant = ({ title, results }) => {
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 10,
-    height: 310,
+    marginBottom: 20,
+  },
+  lst_box: {
+    height: 300,
   },
   lst_title_box: {
     marginBottom: 10,
   },
   lst_title_content: {
-    color: "#ffffff",
+    color: "#111111",
     fontSize: 30,
     fontWeight: "900",
   },
+  lst_title_amount: {
+    color: "red",
+    fontSize: 20,
+    fontWeight: "700"
+  }
 });
 
 export default ListRestaurant;

@@ -28,11 +28,5 @@ export default () => {
     makeYelpRequest("pasta");
   }, []);
 
-  const object = [
-    {yelpRequest: makeYelpRequest},
-    {searchResults: searchResults},
-    {errorMsg: errorMsg},
-  ]
-
   return [makeYelpRequest, searchResults, errorMsg];
 };
