@@ -1,38 +1,18 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet, Header } from "react-native";
+import React from "react";
+import { Text, View, StyleSheet, FlatList, ScrollView } from "react-native";
 import SearchBar from "../components/SearchBar";
-import PreviewRestaurant from "../components/PreviewRestaurant";
-import Preview2 from "../components/Preview2";
-import yelp from "../api/yelp";
-import {
-  TouchableHighlight,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
+import ListRestaurant from "../components/ListRestaurant";
+import useYelpApi from "../hooks/useYelpApi";
 
-const SearchScreen = () => {
+const SearchScreen = ({navigation}) => {
   const [term, setTerm] = React.useState("");
-  const [searchResults, setSearchResults] = React.useState([]);
-  const [errorMsg, setErrorMsg] = useState("");
+  const [makeYelpRequest, searchResults, errorMsg] = useYelpApi();
 
-  //   const makeApiRequest = () => {
-  //     yelp.route("/search").get((req, res) => {});
-  //   };
-
-  const makeApiRequest = async () => {
-    try {
-      const response = await yelp.get("/search", {
-        params: {
-          limit: 5,
-          // if key and value is identical so can write like this. here key is term and value is term also
-          term,
-          location: "london",
-        },
-      });
-      console.log(response.data.businesses);
-      setSearchResults(response.data.businesses);
-    } catch (e) {
-      console.log(setErrorMsg("Something went wrong. return later!!!!"));
-    }
+  const filterResultsByPrice = (price) => {
+    // price === "$" || "$$" || "$$$"
+    return searchResults.filter((item) => {
+      return item.price === price;
+    });
   };
 
   return (
@@ -40,13 +20,35 @@ const SearchScreen = () => {
       <SearchBar
         term={term}
         onTermChange={(newTerm) => setTerm(newTerm)}
-        onTermSubmit={() => makeApiRequest()}
+        onTermSubmit={() => makeYelpRequest(term)}
       />
-      {errorMsg 
-        ? <Text>{errorMsg}</Text>
-        : <Text>We have found: {searchResults.length} results</Text>
-      }
-      <PreviewRestaurant />
+      {errorMsg ? (
+        <Text>{errorMsg}</Text>
+      ) : (
+        <Text>We have found: {searchResults.length} results</Text>
+      )}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {filterResultsByPrice("$").length === 0 ? null : (
+          <ListRestaurant
+            results={filterResultsByPrice("$")}
+            title="Cost Effective"
+          />
+        )}
+
+        {filterResultsByPrice("$$").length === 0 ? null : (
+          <ListRestaurant
+            results={filterResultsByPrice("$$")}
+            title="Bit Pricer"
+          />
+        )}
+
+        {filterResultsByPrice("$$$").length === 0 ? null : (
+          <ListRestaurant
+            results={filterResultsByPrice("$$$")}
+            title="Big Spender"
+          />
+        )}
+      </ScrollView>
     </View>
   );
 };
@@ -55,6 +57,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#999999",
     height: "100%",
+    paddingLeft: 30,
+  },
+  list: {
+    marginTop: 10,
   },
 });
 

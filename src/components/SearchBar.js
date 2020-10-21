@@ -21,15 +21,15 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#ffffff",
     marginVertical: 10,
-    marginHorizontal: 30,
     borderRadius: 5,
+    marginRight: 30,
     flexDirection: "row",
     shadowColor: "#111111",
     shadowOffset: {
       width: 10,
       height: 20,
     },
-    shadowOpacity: 0.4,
+    shadowOpacity: 0.8,
     shadowRadius: 10,
   },
   search_icon: {
