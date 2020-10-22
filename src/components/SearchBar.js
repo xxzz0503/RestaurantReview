@@ -59,12 +59,12 @@ const styles = StyleSheet.create({
   },
   search_icon: {
     fontSize: 40,
-    color: "#111111",
+    color: "#14274e",
     marginHorizontal: 10,
   },
   search_text_input: {
     flex: 1,
-    color: "#111111",
+    color: "#14274e",
     fontSize: 15,
     fontWeight: "600",
     display: "none",
@@ -79,7 +79,7 @@ const onPress_styles = StyleSheet.create({
     marginRight: 30,
     flexDirection: "row",
     justifyContent: "flex-start",
-    shadowColor: "#111111",
+    shadowColor: "#14274e",
     shadowOffset: {
       width: 10,
       height: 10,
@@ -89,12 +89,12 @@ const onPress_styles = StyleSheet.create({
   },
   search_icon: {
     fontSize: 60,
-    color: "#4695FF",
+    color: "#14274e",
     marginHorizontal: 10,
   },
   search_text_input: {
     flex: 1,
-    color: "#111111",
+    color: "#14274e",
     fontSize: 15,
     fontWeight: "600",
   },

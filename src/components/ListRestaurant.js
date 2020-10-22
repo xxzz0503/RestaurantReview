@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   lst_title_content: {
-    color: "#111111",
+    color: "#14274e",
     fontSize: 30,
     fontWeight: "900",
   },

@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Text,
+  View,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  StatusBar,
+} from "react-native";
 import { FontAwesome, Feather, FontAwesome5 } from "@expo/vector-icons";
 import yelp from "../api/yelp";
 import ImageSlider from "./ImageSlider";
@@ -17,9 +24,16 @@ const RestaurantDetail = ({ navigation }) => {
   React.useEffect(() => {
     getDetailFromId(itemId);
   }, []);
-
+  console.log(result);
   return result !== null ? (
     <View style={styles.container}>
+      <View>
+         {/* device status bar */}
+        <StatusBar
+          translucent
+          barStyle="light-content"
+        />
+      </View>
       <View style={styles.res_detail_box}>
         {/* image flow */}
         <View style={styles.res_img_box}>
@@ -27,8 +41,7 @@ const RestaurantDetail = ({ navigation }) => {
           <View style={styles.res_tag_box}>
             <View style={styles.res_rating_box}>
               <Text style={styles.res_rating_content}>
-                {result.rating}
-                {"  "}
+                {`${result.rating}  `}
                 <FontAwesome
                   style={styles.res_rating_content_icon}
                   name="star"
@@ -120,7 +133,6 @@ const RestaurantDetail = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#999999",
     height: "100%",
     justifyContent: "center",
   },
@@ -170,7 +182,8 @@ const styles = StyleSheet.create({
     zIndex: 1,
     position: "absolute",
     backgroundColor: "#ffffff",
-    borderRadius: 30,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     width: "100%",
     bottom: 0,
     top: 290,

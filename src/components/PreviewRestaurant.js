@@ -49,9 +49,11 @@ const styles = StyleSheet.create({
   // main container
   container: {
     marginRight: 30,
+    marginLeft: 10,
+    marginTop: 10,
     backgroundColor: "#F4F4F4",
     borderRadius: 10,
-    shadowColor: "#111111",
+    shadowColor: "#14274e",
     shadowOffset: {
       width: 10,
       height: 10,
@@ -94,6 +96,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     paddingLeft: 10,
     paddingBottom: 5,
+    paddingRight: 10,
     paddingTop: 5,
     width:200,
     flex: 1,
@@ -107,15 +110,13 @@ const styles = StyleSheet.create({
   res_tag_box: {
     flex: 1,
     flexDirection: "row",
-    alignContent: "flex-end",
   },
   res_rating_box: {
     backgroundColor: "#EBECF1",
     borderRadius: 10,
     marginRight: 10,
-    alignContent: "center",
-    justifyContent: "center",
     paddingHorizontal: 5,
+    
   },
   res_rating_content: {
     fontSize: 16,
@@ -133,12 +134,11 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
   },
   res_review_box: {
+    position: "absolute",
     backgroundColor: "#EBECF1",
     borderRadius: 10,
-    alignItems: "center",
-    alignContent: "center",
-    justifyContent: "center",
     paddingHorizontal: 5,
+    right: 0
   },
   rex_review_content: {
     fontSize: 16,

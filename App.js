@@ -14,7 +14,7 @@ const navigator = createStackNavigator(
   {
     initialRouteName: "Search",
     defaultNavigationOptions: {
-      header: null,
+      headerShown: false,
       // headerStyle: {
       //   borderBottomWidth: "none",
       //   shadowColor: 'transparent',

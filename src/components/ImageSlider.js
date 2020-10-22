@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   res_image: {
     height: 350,
-    resizeMode: "center"
+    resizeMode: "cover"
   },
   res_image_pagination:{
     position: "absolute",
