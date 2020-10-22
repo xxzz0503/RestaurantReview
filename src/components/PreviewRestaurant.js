@@ -37,7 +37,7 @@ const PreviewRestaurant = ({
             </Text>
           </View>
           <View style={styles.res_review_box}>
-            <Text style={styles.rex_review_content}><FontAwesome name="pencil-square-o" size="16"/> {`  ${res_review}`}</Text>
+            <Text style={styles.rex_review_content}><FontAwesome name="pencil-square-o" size={16}/> {`  ${res_review}`}</Text>
           </View>
         </View>
       </View>

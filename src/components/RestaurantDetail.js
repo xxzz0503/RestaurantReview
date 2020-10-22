@@ -109,7 +109,12 @@ const RestaurantDetail = ({ navigation }) => {
       </View>
     </View>
   ) : (
-    <Text>Wait a minutes</Text>
+    <View style={waiting_style.container}>
+      <Image
+        style={waiting_style.waiting_content}
+        source={require("../../assets/loading.gif")}
+      />
+    </View>
   );
 };
 
@@ -255,7 +260,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignSelf: "center",
     alignContent: "center",
-    justifyContent: "center"
+    justifyContent: "center",
   },
   res_cta_icon: {
     color: "#FFC529",
@@ -265,6 +270,21 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontSize: 16,
     fontWeight: "600",
+  },
+});
+
+const waiting_style = StyleSheet.create({
+  container: {
+    height: "100%",
+    width: "100%",
+    justifyContent: "center",
+  },
+
+  // design waiting screen
+  waiting_content: {
+    alignSelf: "center",
+    width: 100,
+    height: 100,
   },
 });
 
